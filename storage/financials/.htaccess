@@ -1,0 +1,2 @@
+# Block direct web access to secure financial records
+Deny from all

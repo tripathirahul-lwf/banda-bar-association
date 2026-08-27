@@ -1,0 +1,242 @@
+/**
+ * Institutional CR80 Landscape ID Card Stylesheet
+ * District Bar Association, Banda
+ */
+
+/* Core ID Card Layout */
+.id-card-wrapper {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #102A43;
+}
+
+.id-card-container {
+    width: 480px;
+    height: 300px;
+    background-color: #ffffff;
+    border: 3px double #102A43;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+/* Header */
+.id-card-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #D9B44A;
+    padding-bottom: 5px;
+    margin-bottom: 8px;
+}
+
+.id-card-logo {
+    width: 45px;
+    height: 45px;
+    margin-right: 8px;
+}
+
+.id-card-title-hi {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #102A43;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.id-card-title-en {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #1F4E79;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+}
+
+.id-card-estd {
+    font-size: 0.5rem;
+    color: #D9B44A;
+    font-weight: bold;
+}
+
+/* Body Content */
+.id-card-body {
+    display: flex;
+    flex: 1;
+}
+
+.id-card-left {
+    width: 105px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+}
+
+.id-card-photo {
+    width: 95px;
+    height: 110px;
+    border: 2px solid #102A43;
+    background-color: #f5f7fb;
+    object-fit: cover;
+}
+
+.id-card-category-badge {
+    margin-top: 5px;
+    background-color: #102A43;
+    color: #ffffff;
+    font-size: 0.55rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.id-card-right {
+    flex: 1;
+    font-size: 0.72rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.id-card-row {
+    margin-bottom: 4px;
+}
+
+.id-card-label {
+    font-weight: bold;
+    color: #555555;
+    font-size: 0.65rem;
+}
+
+.id-card-value {
+    font-weight: bold;
+    color: #102A43;
+}
+
+/* Footer Section */
+.id-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid #eeeeee;
+    padding-top: 6px;
+}
+
+.id-card-qr-box {
+    width: 65px;
+    height: 65px;
+    border: 1px solid #dddddd;
+    padding: 2px;
+    background-color: #ffffff;
+}
+
+.id-card-qr-box svg, .id-card-qr-box img {
+    width: 100%;
+    height: 100%;
+}
+
+.id-card-signature-box {
+    text-align: center;
+    font-size: 0.55rem;
+    color: #555555;
+}
+
+.id-card-signature-img {
+    height: 30px;
+    max-width: 110px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 2px;
+}
+
+.id-card-signature-placeholder {
+    height: 25px;
+    border-bottom: 1px dashed #999999;
+    width: 100px;
+    margin-bottom: 3px;
+}
+
+/* Card Back Design */
+.id-card-container.back-side {
+    background-color: #fcfcfc;
+    justify-content: space-between;
+}
+
+.id-card-back-title {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #102A43;
+    border-bottom: 1px solid #102A43;
+    padding-bottom: 3px;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.id-card-back-terms {
+    font-size: 0.58rem;
+    color: #666666;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.id-card-back-meta {
+    font-size: 0.65rem;
+    border-top: 1px solid #dddddd;
+    padding-top: 5px;
+}
+
+.id-card-back-address {
+    font-size: 0.58rem;
+    text-align: center;
+    color: #555555;
+    background-color: #f0f4f8;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+/* Print Specific Rules */
+@media print {
+    body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .no-print,
+    header,
+    footer,
+    nav,
+    .navbar,
+    .sidebar,
+    .btn,
+    .alert,
+    .card:not(.id-card-print-target) {
+        display: none !important;
+    }
+    
+    .id-card-wrapper {
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        width: auto !important;
+        max-width: none !important;
+    }
+
+    .id-card-container {
+        border: 2px solid #000000 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        page-break-after: always;
+        margin: 10px auto !important;
+        display: flex !important;
+    }
+}
