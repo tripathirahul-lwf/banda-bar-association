@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Gold Linear Gradients -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCEE21" />
+      <stop offset="40%" stop-color="#D9B44A" />
+      <stop offset="70%" stop-color="#B38728" />
+      <stop offset="100%" stop-color="#8C6615" />
+    </linearGradient>
+    <linearGradient id="goldLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3A8" />
+      <stop offset="50%" stop-color="#D9B44A" />
+      <stop offset="100%" stop-color="#996F19" />
+    </linearGradient>
+    <!-- Deep Navy Gradient -->
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#143254" />
+      <stop offset="50%" stop-color="#0B2545" />
+      <stop offset="100%" stop-color="#061629" />
+    </linearGradient>
+    
+    <!-- Text Paths for Circular Lettering -->
+    <path id="topTextPath" d="M 55,250 A 195,195 0 0,1 445,250" fill="none" />
+    <path id="bottomTextPath" d="M 445,250 A 195,195 0 0,1 55,250" fill="none" />
+  </defs>
+
+  <!-- Outer Ring Background -->
+  <circle cx="250" cy="250" r="240" fill="url(#navyGrad)" stroke="url(#goldGrad)" stroke-width="8" />
+  
+  <!-- Outer Gold Rope / Beaded Ring Accent -->
+  <circle cx="250" cy="250" r="226" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" stroke-dasharray="6,4" />
+  
+  <!-- Outer Lettering Channel -->
+  <circle cx="250" cy="250" r="162" fill="url(#navyGrad)" stroke="url(#goldGrad)" stroke-width="4" />
+  <circle cx="250" cy="250" r="154" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" stroke-dasharray="3,3" />
+
+  <!-- Circular Inscription Text -->
+  <text fill="url(#goldLight)" font-family="'Poppins', 'Arial Black', sans-serif" font-size="21.5" font-weight="800" letter-spacing="3.5">
+    <textPath href="#topTextPath" startOffset="50%" text-anchor="middle">
+      DISTRICT BAR ASSOCIATION • BANDA
+    </textPath>
+  </text>
+  <text fill="url(#goldLight)" font-family="'Poppins', 'Arial', sans-serif" font-size="19" font-weight="700" letter-spacing="4">
+    <textPath href="#bottomTextPath" startOffset="50%" text-anchor="middle">
+      ★ ESTD. 1937 ★ UTTAR PRADESH
+    </textPath>
+  </text>
+
+  <!-- Inner Center Shield / Circle -->
+  <circle cx="250" cy="250" r="148" fill="#0B2545" />
+  
+  <!-- Subtle Radial Glow in Center -->
+  <circle cx="250" cy="235" r="130" fill="url(#navyGrad)" opacity="0.8" />
+
+  <!-- Decorative Laurel Wreath / Golden Leaves around Central Core -->
+  <g fill="url(#goldGrad)" opacity="0.45">
+    <!-- Left Wreath Leaves -->
+    <path d="M 140,210 C 130,225 125,245 128,265 C 131,250 138,235 148,225 Z" />
+    <path d="M 132,240 C 122,255 120,275 125,295 C 127,280 133,265 143,255 Z" />
+    <path d="M 136,280 C 132,298 135,315 145,330 C 143,315 145,300 152,290 Z" />
+    <path d="M 150,315 C 150,332 158,348 172,360 C 166,345 165,330 170,320 Z" />
+    <!-- Right Wreath Leaves -->
+    <path d="M 360,210 C 370,225 375,245 372,265 C 369,250 362,235 352,225 Z" />
+    <path d="M 368,240 C 378,255 380,275 375,295 C 373,280 367,265 357,255 Z" />
+    <path d="M 364,280 C 368,298 365,315 355,330 C 357,315 355,300 348,290 Z" />
+    <path d="M 350,315 C 350,332 342,348 328,360 C 334,345 335,330 330,320 Z" />
+  </g>
+
+  <!-- Central Emblem: The Scales of Justice -->
+  <g id="scalesOfJustice" transform="translate(0, -10)">
+    <!-- Central Pillar Finial -->
+    <circle cx="250" cy="142" r="7" fill="url(#goldLight)" />
+    <polygon points="250,130 256,140 244,140" fill="url(#goldLight)" />
+
+    <!-- Main Vertical Column -->
+    <rect x="247" y="145" width="6" height="150" fill="url(#goldGrad)" rx="3" />
+    <!-- Decorative Column Rings -->
+    <rect x="244" y="165" width="12" height="4" fill="url(#goldLight)" rx="2" />
+    <rect x="244" y="240" width="12" height="4" fill="url(#goldLight)" rx="2" />
+
+    <!-- Pedestal Base of Pillar -->
+    <path d="M 230,295 L 270,295 L 276,305 L 224,305 Z" fill="url(#goldLight)" />
+    <rect x="218" y="305" width="64" height="6" fill="url(#goldGrad)" rx="2" />
+
+    <!-- Balance Crossbeam (Fulcrum at 250, 168) -->
+    <circle cx="250" cy="168" r="9" fill="url(#navyGrad)" stroke="url(#goldLight)" stroke-width="4" />
+    <circle cx="250" cy="168" r="3.5" fill="url(#goldLight)" />
+
+    <!-- Horizontal Curved Balance Bar -->
+    <path d="M 165,178 C 190,165 230,166 250,168 C 270,166 310,165 335,178 C 338,180 341,176 339,174 C 312,159 270,160 250,162 C 230,160 188,159 161,174 C 159,176 162,180 165,178 Z" fill="url(#goldLight)" />
+
+    <!-- Left Suspension Hook & Ring -->
+    <circle cx="163" cy="177" r="4.5" fill="none" stroke="url(#goldLight)" stroke-width="2" />
+    <!-- Left Chains -->
+    <line x1="163" y1="181" x2="135" y2="236" stroke="url(#goldGrad)" stroke-width="1.8" />
+    <line x1="163" y1="181" x2="163" y2="236" stroke="url(#goldGrad)" stroke-width="1.8" />
+    <line x1="163" y1="181" x2="191" y2="236" stroke="url(#goldGrad)" stroke-width="1.8" />
+    <!-- Left Weighing Pan -->
+    <path d="M 130,236 C 130,249 196,249 196,236 Z" fill="url(#goldLight)" stroke="url(#goldGrad)" stroke-width="1.5" />
+    <ellipse cx="163" cy="236" rx="33" ry="4" fill="url(#goldGrad)" />
+
+    <!-- Right Suspension Hook & Ring -->
+    <circle cx="337" cy="177" r="4.5" fill="none" stroke="url(#goldLight)" stroke-width="2" />
+    <!-- Right Chains -->
+    <line x1="337" y1="181" x2="309" y2="236" stroke="url(#goldGrad)" stroke-width="1.8" />
+    <line x1="337" y1="181" x2="337" y2="236" stroke="url(#goldGrad)" stroke-width="1.8" />
+    <line x1="337" y1="181" x2="365" y2="236" stroke="url(#goldGrad)" stroke-width="1.8" />
+    <!-- Right Weighing Pan -->
+    <path d="M 304,236 C 304,249 370,249 370,236 Z" fill="url(#goldLight)" stroke="url(#goldGrad)" stroke-width="1.5" />
+    <ellipse cx="337" cy="236" rx="33" ry="4" fill="url(#goldGrad)" />
+  </g>
+
+  <!-- Open Constitution / Law Book at Bottom Center -->
+  <g id="lawBook" transform="translate(0, -6)">
+    <path d="M 250,320 C 235,316 205,316 185,322 L 185,348 C 205,342 235,342 250,346 Z" fill="#FFF8E7" stroke="url(#goldGrad)" stroke-width="1.8" />
+    <path d="M 250,320 C 265,316 295,316 315,322 L 315,348 C 295,342 265,342 250,346 Z" fill="#FFF8E7" stroke="url(#goldGrad)" stroke-width="1.8" />
+    <line x1="250" y1="318" x2="250" y2="347" stroke="url(#goldGrad)" stroke-width="2.5" />
+    <line x1="195" y1="327" x2="240" y2="325" stroke="#996F19" stroke-width="1.5" stroke-dasharray="4,2" />
+    <line x1="195" y1="333" x2="238" y2="331" stroke="#996F19" stroke-width="1.5" stroke-dasharray="4,2" />
+    <line x1="195" y1="339" x2="235" y2="337" stroke="#996F19" stroke-width="1.5" stroke-dasharray="4,2" />
+    <line x1="260" y1="325" x2="305" y2="327" stroke="#996F19" stroke-width="1.5" stroke-dasharray="4,2" />
+    <line x1="262" y1="331" x2="305" y2="333" stroke="#996F19" stroke-width="1.5" stroke-dasharray="4,2" />
+    <line x1="265" y1="337" x2="305" y2="339" stroke="#996F19" stroke-width="1.5" stroke-dasharray="4,2" />
+  </g>
+
+  <!-- Bottom Ribbon / Motto Plaque -->
+  <g id="mottoPlaque" transform="translate(0, 0)">
+    <path d="M 175,365 L 325,365 L 315,385 L 185,385 Z" fill="url(#navyGrad)" stroke="url(#goldGrad)" stroke-width="2" />
+    <text x="250" y="379" fill="url(#goldLight)" font-family="'Noto Sans Devanagari', 'Poppins', sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1.5">
+      न्याय • एकता • सत्य
+    </text>
+  </g>
+
+</svg>

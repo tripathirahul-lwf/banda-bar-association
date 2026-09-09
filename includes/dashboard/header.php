@@ -102,14 +102,29 @@ $fullTitle = (isset($pageTitle) ? $pageTitle . " | " : "") . $association_name_h
     <!-- Collapsible Sidebar (Left Side) -->
     <div class="dashboard-sidebar" id="dashboardSidebar">
         <div class="dashboard-sidebar-header">
-            <a href="<?php echo SITE_URL; ?>/index.php" class="dashboard-sidebar-brand text-decoration-none">
-                <i class="fa-solid fa-scale-balanced"></i>
-                <span class="font-hindi" style="font-size: 0.95rem;"><?php echo e(getSetting('established_year', '1937')); ?> DBA Banda</span>
+            <a href="<?php echo SITE_URL; ?>/index.php" class="dashboard-sidebar-brand text-decoration-none d-flex align-items-center gap-2.5">
+                <img src="<?php echo SITE_URL; ?>/assets/images/logo.png" alt="DBA Logo" class="rounded-circle shadow-sm" style="width: 34px; height: 34px; object-fit: cover; border: 1.5px solid var(--gold-accent);" onerror="this.src='<?php echo SITE_URL; ?>/assets/images/logo.svg'">
+                <div class="d-flex flex-column" style="line-height: 1.15;">
+                    <span class="fw-bold text-gold-custom tracking-wide" style="font-size: 0.92rem; letter-spacing: 0.5px;">DBA BANDA</span>
+                    <span class="font-hindi text-white-50" style="font-size: 0.68rem;">जिला अधिवक्ता संघ</span>
+                </div>
             </a>
         </div>
         
         <div class="dashboard-sidebar-menu">
             <?php require_once __DIR__ . '/sidebar.php'; ?>
+        </div>
+
+        <div class="sidebar-footer-card d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-gold-custom text-navy-custom fw-bold px-2 py-0.5" style="font-size: 0.68rem; letter-spacing: 0.5px;">
+                    <?php echo strtoupper(sanitize($role)); ?>
+                </span>
+                <span class="text-white-50 font-hindi" style="font-size: 0.72rem;">सत्र <?php echo date('Y'); ?></span>
+            </div>
+            <a href="<?php echo SITE_URL; ?>/index.php" class="text-gold-custom text-decoration-none small" title="मुख्य पोर्टल देखें (Public Portal)">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
         </div>
     </div>
 

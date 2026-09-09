@@ -15,20 +15,24 @@ if (count(get_included_files()) === 1) {
         <div class="row align-items-center">
             <!-- Left Side: Shield Logo & Organization Title -->
             <div class="col-lg-8 col-md-7 col-12 d-flex align-items-center mb-3 mb-md-0">
-                <?php 
-                $custom_logo = getSetting('logo', '');
-                if (!empty($custom_logo)): 
-                ?>
-                    <img src="<?php echo SITE_URL; ?>/<?php echo $custom_logo; ?>" class="me-3" style="max-height: 58px;" onerror="this.style.display='none'">
-                <?php else: ?>
-                    <div class="logo-placeholder bg-navy-custom text-gold-custom d-flex align-items-center justify-content-center rounded-circle me-3" style="width: 58px; height: 58px; flex-shrink: 0;">
-                        <i class="bi bi-shield-shaded fs-3"></i>
-                    </div>
-                <?php endif; ?>
+                <a href="<?php echo SITE_URL; ?>/index.php" class="text-decoration-none me-3 flex-shrink-0">
+                    <img src="<?php echo SITE_URL; ?>/assets/images/logo.png" alt="DBA Banda Official Emblem" class="rounded-circle shadow-sm" style="width: 66px; height: 66px; object-fit: cover; border: 2.5px solid var(--gold-accent);" onerror="this.src='<?php echo SITE_URL; ?>/assets/images/logo.svg'">
+                </a>
                 <div>
-                    <h1 class="h4 mb-0 fw-bold text-navy-custom hindi-text"><?php echo e(getSetting('association_name_hi', 'जिला अधिवक्ता संघ, बांदा')); ?></h1>
-                    <h2 class="h5 mb-0 fw-semibold text-secondary-custom english-text text-uppercase tracking-wide" style="font-size: 1.05rem;"><?php echo e(getSetting('association_name_en', 'District Bar Association, Banda')); ?></h2>
-                    <p class="mb-0 text-muted small mt-1 font-hindi text-gold-dark"><i class="bi bi-award-fill text-gold-custom me-1"></i>स्थापना वर्ष <?php echo e(getSetting('established_year', '१९३७')); ?> | Estd. <?php echo e(getSetting('established_year', '1937')); ?></p>
+                    <h1 class="h4 mb-0 fw-bold text-navy-custom hindi-text d-flex align-items-center gap-2">
+                        <?php echo e(getSetting('association_name_hi', 'जिला अधिवक्ता संघ, बांदा')); ?>
+                    </h1>
+                    <h2 class="h6 mb-0 fw-semibold text-secondary-custom english-text text-uppercase tracking-wider" style="font-size: 0.95rem; letter-spacing: 0.8px;">
+                        <?php echo e(getSetting('association_name_en', 'District Bar Association, Banda')); ?>
+                    </h2>
+                    <div class="d-flex align-items-center gap-2 mt-1">
+                        <span class="badge bg-gold-custom text-navy-custom font-hindi px-2.5 py-1 fw-bold" style="font-size: 0.72rem;">
+                            <i class="fa-solid fa-award me-1"></i>स्थापना वर्ष <?php echo e(getSetting('established_year', '१९३७')); ?>
+                        </span>
+                        <span class="text-muted small english-text fw-medium" style="font-size: 0.75rem;">
+                            | Estd. <?php echo e(getSetting('established_year', '1937')); ?> • Uttar Pradesh
+                        </span>
+                    </div>
                 </div>
             </div>
             
@@ -36,31 +40,31 @@ if (count(get_included_files()) === 1) {
             <div class="col-lg-4 col-md-5 col-12 d-flex justify-content-md-end justify-content-start align-items-center">
                 <?php if (is_logged_in()): ?>
                     <div class="dropdown">
-                        <button class="btn btn-outline-navy btn-sm dropdown-toggle d-flex align-items-center gap-2" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle fs-5 text-gold-custom"></i>
+                        <button class="btn btn-outline-navy btn-sm dropdown-toggle d-flex align-items-center gap-2 px-3 py-2 shadow-sm rounded-pill" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="border: 1.5px solid var(--gold-accent);">
+                            <i class="fa-solid fa-circle-user fs-5 text-gold-custom"></i>
                             <span class="fw-medium text-truncate" style="max-width: 140px;"><?php echo sanitize($_SESSION['username']); ?></span>
                             <span class="badge bg-gold-custom text-navy-custom font-size-xs px-2"><?php echo strtoupper(sanitize($_SESSION['user_role'])); ?></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2" aria-labelledby="userMenuButton">
                             <li>
                                 <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="<?php echo SITE_URL; ?>/<?php echo sanitize($_SESSION['user_role']); ?>/index.php">
-                                    <i class="bi bi-speedometer2 text-navy-custom"></i>
+                                    <i class="fa-solid fa-gauge-high text-navy-custom"></i>
                                     <span>डैशबोर्ड (Dashboard)</span>
                                 </a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <a class="dropdown-item py-2 text-danger d-flex align-items-center gap-2" href="<?php echo SITE_URL; ?>/login.php?action=logout">
-                                    <i class="bi bi-box-arrow-right"></i>
+                                    <i class="fa-solid fa-right-from-bracket"></i>
                                     <span>लॉगआउट (Logout)</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 <?php else: ?>
-                    <a href="<?php echo SITE_URL; ?>/login.php" class="btn btn-navy d-inline-flex align-items-center gap-2">
-                        <i class="bi bi-person-lock fs-5"></i>
-                        <span class="fw-semibold">सदस्य लॉगिन / Member Login</span>
+                    <a href="<?php echo SITE_URL; ?>/login.php" class="btn btn-navy d-inline-flex align-items-center gap-2 px-3 py-2 shadow-sm rounded-pill" style="border: 1.5px solid var(--gold-accent);">
+                        <i class="fa-solid fa-lock text-gold-custom"></i>
+                        <span class="fw-semibold font-hindi">सदस्य लॉगिन / Member Login</span>
                     </a>
                 <?php endif; ?>
             </div>
@@ -106,38 +110,39 @@ if (count(get_included_files()) === 1) {
                 
                 <!-- Dropdown for Member modules (keeps desktop navbar clean but highly detailed) -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-gold-custom" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        डिजिटल सेवाएं (Services)
+                    <a class="nav-link dropdown-toggle text-gold-custom fw-bold" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-layer-group me-1"></i>डिजिटल सेवाएं (Services)
                     </a>
-                    <ul class="dropdown-menu border-0 shadow-sm mt-1" aria-labelledby="servicesDropdown">
+                    <ul class="dropdown-menu border-0 shadow-lg mt-1 p-2" aria-labelledby="servicesDropdown" style="border-radius: 10px; min-width: 240px; border-top: 3px solid var(--gold-accent) !important;">
                         <li>
-                            <a class="dropdown-item py-2 <?php echo is_page_active('id-card.php'); ?>" href="<?php echo SITE_URL; ?>/id-card.php">
-                                <i class="bi bi-card-image text-secondary-custom me-2"></i>डिजिटल ID Card
+                            <a class="dropdown-item py-2 rounded d-flex align-items-center <?php echo is_page_active('id-card.php'); ?>" href="<?php echo SITE_URL; ?>/id-card.php">
+                                <i class="fa-solid fa-id-card text-gold-dark me-2" style="width: 20px;"></i>डिजिटल ID Card
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item py-2 <?php echo is_page_active('wakalatnama.php'); ?>" href="<?php echo SITE_URL; ?>/wakalatnama.php">
-                                <i class="bi bi-file-earmark-text text-secondary-custom me-2"></i>Wakalatnama (वकालतनामा)
+                            <a class="dropdown-item py-2 rounded d-flex align-items-center <?php echo is_page_active('wakalatnama.php'); ?>" href="<?php echo SITE_URL; ?>/wakalatnama.php">
+                                <i class="fa-solid fa-file-signature text-gold-dark me-2" style="width: 20px;"></i>वकालतनामा (Wakalatnama)
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item py-2 <?php echo is_page_active('association-fund.php'); ?>" href="<?php echo SITE_URL; ?>/association-fund.php">
-                                <i class="bi bi-bank text-secondary-custom me-2"></i>संघीय कोष (Association Fund)
+                            <a class="dropdown-item py-2 rounded d-flex align-items-center <?php echo is_page_active('rooms.php'); ?>" href="<?php echo SITE_URL; ?>/rooms.php">
+                                <i class="fa-solid fa-door-open text-gold-dark me-2" style="width: 20px;"></i>कक्ष/रूम किराया (Room Rent)
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item py-2 <?php echo is_page_active('advocate-fee.php'); ?>" href="<?php echo SITE_URL; ?>/advocate-fee.php">
-                                <i class="bi bi-currency-rupee text-secondary-custom me-2"></i>अधिवक्ता शुल्क (Bar Fee)
+                            <a class="dropdown-item py-2 rounded d-flex align-items-center <?php echo is_page_active('election.php'); ?>" href="<?php echo SITE_URL; ?>/election.php">
+                                <i class="fa-solid fa-square-poll-vertical text-gold-dark me-2" style="width: 20px;"></i>चुनाव व्यवस्था (Election)
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider my-1"></li>
+                        <li>
+                            <a class="dropdown-item py-2 rounded d-flex align-items-center <?php echo is_page_active('association-fund.php'); ?>" href="<?php echo SITE_URL; ?>/association-fund.php">
+                                <i class="fa-solid fa-building-columns text-gold-dark me-2" style="width: 20px;"></i>संघीय कोष (Assoc. Fund)
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item py-2 <?php echo is_page_active('rooms.php'); ?>" href="<?php echo SITE_URL; ?>/rooms.php">
-                                <i class="bi bi-door-closed text-secondary-custom me-2"></i>कक्ष/रूम किराया (Room Rent)
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item py-2 <?php echo is_page_active('election.php'); ?>" href="<?php echo SITE_URL; ?>/election.php">
-                                <i class="bi bi-check2-square text-secondary-custom me-2"></i>चुनाव (Election)
+                            <a class="dropdown-item py-2 rounded d-flex align-items-center <?php echo is_page_active('advocate-fee.php'); ?>" href="<?php echo SITE_URL; ?>/advocate-fee.php">
+                                <i class="fa-solid fa-receipt text-gold-dark me-2" style="width: 20px;"></i>अधिवक्ता शुल्क (Bar Fee)
                             </a>
                         </li>
                     </ul>
