@@ -40,7 +40,65 @@ loadEnv(__DIR__ . '/../.env');
 // Environment configurations with default fallbacks
 $app_env = $_ENV['APP_ENV'] ?? 'production';
 $app_debug = filter_var($_ENV['APP_DEBUG'] ?? false, FILTER_VALIDATE_BOOLEAN);
-$app_url = $_ENV['APP_URL'] ?? 'http://localhost/banda-bar';
+
+// Dynamic Application URL Detection (Auto-detects live domain/subdomain/port/HTTPS/subfolder)
+$configured_url = trim($_ENV['APP_URL'] ?? '');
+$http_host = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'] ?? '';
+$is_localhost_host = empty($http_host) || in_array(strtolower(explode(':', $http_host)[0]), ['localhost', '127.0.0.1', '::1'], true);
+
+// If APP_URL is specified in .env, use it UNLESS it points to localhost while accessed from a live remote domain
+if (!empty($configured_url) && !(!$is_localhost_host && stripos($configured_url, 'localhost') !== false)) {
+    $app_url = rtrim($configured_url, '/');
+} elseif (empty($http_host) && php_sapi_name() === 'cli') {
+    // CLI fallback
+    $app_url = !empty($configured_url) ? rtrim($configured_url, '/') : 'http://localhost/banda-bar';
+} else {
+    // Determine Protocol (Support HTTPS direct, Reverse Proxy / Cloudflare / Hostinger load balancer)
+    $is_https = (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off')
+        || (isset($_SERVER['SERVER_PORT']) && (int)$_SERVER['SERVER_PORT'] === 443)
+        || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https')
+        || (isset($_SERVER['HTTP_X_FORWARDED_SSL']) && strtolower($_SERVER['HTTP_X_FORWARDED_SSL']) === 'on');
+
+    $protocol = $is_https ? 'https://' : 'http://';
+    $host = !empty($http_host) ? $http_host : 'localhost';
+
+    // Determine Base Directory Path
+    $app_dir = str_replace('\\', '/', realpath(__DIR__ . '/..') ?: dirname(__DIR__));
+    $doc_root = '';
+
+    if (!empty($_SERVER['DOCUMENT_ROOT'])) {
+        $doc_root = str_replace('\\', '/', realpath($_SERVER['DOCUMENT_ROOT']) ?: $_SERVER['DOCUMENT_ROOT']);
+    } elseif (!empty($_SERVER['SCRIPT_FILENAME']) && !empty($_SERVER['SCRIPT_NAME'])) {
+        $script_file = str_replace('\\', '/', $_SERVER['SCRIPT_FILENAME']);
+        $script_name = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
+        if (substr($script_file, -strlen($script_name)) === $script_name) {
+            $doc_root = substr($script_file, 0, -strlen($script_name));
+        }
+    }
+
+    $subpath = '';
+    if (!empty($doc_root)) {
+        $doc_root = rtrim($doc_root, '/');
+        $app_dir = rtrim($app_dir, '/');
+        if (stripos($app_dir, $doc_root) === 0) {
+            $subpath = substr($app_dir, strlen($doc_root));
+        }
+    }
+
+    // Fallback: If root folder (e.g. Hostinger /public_html), check SCRIPT_NAME
+    if ($subpath === '' && !empty($_SERVER['SCRIPT_NAME'])) {
+        $script_dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+        if ($script_dir === '/' || $script_dir === '\\' || $script_dir === '.') {
+            $subpath = '';
+        }
+    }
+
+    $subpath = '/' . trim(str_replace('\\', '/', $subpath), '/');
+    $base_path = ($subpath === '/' ? '' : $subpath);
+
+    $app_url = rtrim($protocol . $host . $base_path, '/');
+}
+
 $db_host = $_ENV['DB_HOST'] ?? 'localhost';
 $db_port = $_ENV['DB_PORT'] ?? '3306';
 $db_name = $_ENV['DB_NAME'] ?? 'banda_bar';

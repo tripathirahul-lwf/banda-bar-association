@@ -73,6 +73,9 @@ $config = [];
 foreach ($keys as $k) {
     $config[$k] = getSetting($k, '');
 }
+if (empty($config['website_url']) || ($config['website_url'] === 'http://localhost/banda-bar' && SITE_URL !== 'http://localhost/banda-bar')) {
+    $config['website_url'] = SITE_URL;
+}
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2 font-hindi">
