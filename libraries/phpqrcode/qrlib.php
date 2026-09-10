@@ -29,16 +29,16 @@
 	
 	// Required libs
 	
-	include $QR_BASEDIR."qrconst.php";
-	include $QR_BASEDIR."qrconfig.php";
-	include $QR_BASEDIR."qrtools.php";
-	include $QR_BASEDIR."qrspec.php";
-	include $QR_BASEDIR."qrimage.php";
-	include $QR_BASEDIR."qrvect.php";
-	include $QR_BASEDIR."qrinput.php";
-	include $QR_BASEDIR."qrbitstream.php";
-	include $QR_BASEDIR."qrsplit.php";
-	include $QR_BASEDIR."qrrscode.php";
-	include $QR_BASEDIR."qrmask.php";
-	include $QR_BASEDIR."qrencode.php";
+	if (file_exists($QR_BASEDIR."qrconst.php")) include_once $QR_BASEDIR."qrconst.php";
+	if (file_exists($QR_BASEDIR."qrconfig.php")) include_once $QR_BASEDIR."qrconfig.php";
+	if (file_exists($QR_BASEDIR."qrtools.php")) include_once $QR_BASEDIR."qrtools.php";
+	if (file_exists($QR_BASEDIR."qrspec.php")) include_once $QR_BASEDIR."qrspec.php";
+	if (file_exists($QR_BASEDIR."qrimage.php")) include_once $QR_BASEDIR."qrimage.php";
+	if (file_exists($QR_BASEDIR."qrvect.php")) include_once $QR_BASEDIR."qrvect.php";
+	if (file_exists($QR_BASEDIR."qrinput.php")) include_once $QR_BASEDIR."qrinput.php";
+	if (file_exists($QR_BASEDIR."qrbitstream.php")) include_once $QR_BASEDIR."qrbitstream.php";
+	if (file_exists($QR_BASEDIR."qrsplit.php")) include_once $QR_BASEDIR."qrsplit.php";
+	if (file_exists($QR_BASEDIR."qrrscode.php")) include_once $QR_BASEDIR."qrrscode.php";
+	if (file_exists($QR_BASEDIR."qrmask.php")) include_once $QR_BASEDIR."qrmask.php";
+	if (file_exists($QR_BASEDIR."qrencode.php")) include_once $QR_BASEDIR."qrencode.php";
 

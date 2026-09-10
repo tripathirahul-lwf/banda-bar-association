@@ -21,6 +21,11 @@
 }
 
 /* Global Styles */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 body {
     font-family: var(--font-english);
     background-color: var(--bg-light);
@@ -405,7 +410,8 @@ textarea:focus {
 .dashboard-wrapper {
     display: flex;
     min-height: 100vh;
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
     overflow-x: hidden;
 }
 
@@ -699,4 +705,804 @@ textarea:focus {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(217, 180, 74, 0.3);
 }
+
+/* ==========================================================================
+   MATURE LOGIN PORTAL STYLING
+   ========================================================================== */
+.login-role-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(16, 42, 67, 0.08);
+    border-radius: 14px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-role-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold-accent), #0B2545);
+    opacity: 0.8;
+    transition: opacity 0.25s ease, height 0.25s ease;
+}
+
+.login-role-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px -8px rgba(16, 42, 67, 0.15), 0 4px 12px -2px rgba(16, 42, 67, 0.05);
+    border-color: var(--gold-accent) !important;
+}
+
+.login-role-card:hover::before {
+    opacity: 1;
+    height: 5px;
+}
+
+.login-role-card .role-icon-box {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    margin: 0 auto 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F8FAFC;
+    border: 2px solid rgba(217, 180, 74, 0.35);
+    color: var(--primary-navy);
+    font-size: 1.85rem;
+    transition: all 0.25s ease;
+}
+
+.login-role-card:hover .role-icon-box {
+    background: var(--primary-navy);
+    color: var(--gold-accent);
+    border-color: var(--gold-accent);
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(16, 42, 67, 0.22);
+}
+
+.role-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 1.5rem 0;
+    text-align: left;
+}
+
+.role-feature-list li {
+    font-size: 0.78rem;
+    color: var(--muted-text);
+    padding: 0.3rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px dashed #EDF2F7;
+}
+
+.role-feature-list li:last-child {
+    border-bottom: none;
+}
+
+.role-feature-list li i {
+    color: var(--gold-dark);
+    font-size: 0.72rem;
+    flex-shrink: 0;
+}
+
+/* 2-Column Split Portal Layout: Left Institutional Brand Panel */
+.login-brand-panel {
+    background: linear-gradient(145deg, #0B2545 0%, #163B66 60%, #0F2D52 100%);
+    color: #FFFFFF;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 36px -8px rgba(11, 37, 69, 0.2);
+    border: 1px solid rgba(217, 180, 74, 0.2);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-brand-panel::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(217, 180, 74, 0.12) 0%, rgba(217, 180, 74, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.login-brand-panel::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(31, 78, 121, 0.25) 0%, rgba(31, 78, 121, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.brand-crest-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid var(--gold-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    color: var(--gold-accent);
+    font-size: 2.2rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.brand-trust-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    margin-bottom: 1.15rem;
+}
+
+.brand-trust-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(217, 180, 74, 0.15);
+    border: 1px solid rgba(217, 180, 74, 0.3);
+    color: var(--gold-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+/* Modern Segmented Role Tabs */
+.role-nav-segmented {
+    background: #EBF1F6;
+    padding: 5px;
+    border-radius: 12px;
+    display: flex;
+    gap: 4px;
+    width: 100%;
+    border: 1px solid #D7E2EB;
+}
+
+.role-nav-pill {
+    flex: 1;
+    text-align: center;
+    padding: 0.6rem 0.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.82rem;
+    color: #334E68;
+    text-decoration: none !important;
+    transition: all 0.22s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.role-nav-pill:hover {
+    background: rgba(16, 42, 67, 0.08);
+    color: var(--primary-navy);
+}
+
+.role-nav-pill.active {
+    background: var(--primary-navy);
+    color: var(--gold-accent) !important;
+    box-shadow: 0 3px 10px rgba(16, 42, 67, 0.25);
+}
+
+/* Compact Sandbox Bar */
+.sandbox-credentials-bar {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-left: 3.5px solid var(--gold-accent);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.25rem;
+    transition: all 0.2s ease;
+}
+
+.sandbox-credentials-bar:hover {
+    background: #F1F5F9;
+    border-color: #CBD5E1;
+    border-left-color: var(--gold-dark);
+}
+
+.btn-autofill {
+    background: var(--gold-accent);
+    color: var(--primary-navy);
+    font-weight: 700;
+    font-size: 0.75rem;
+    border: none;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    box-shadow: 0 2px 5px rgba(217, 180, 74, 0.3);
+}
+
+.btn-autofill:hover {
+    background: var(--gold-dark);
+    color: #FFFFFF;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(181, 145, 51, 0.35);
+}
+
+/* Login Form Card Styling */
+.login-form-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 12px 36px -8px rgba(16, 42, 67, 0.12), 0 4px 12px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+}
+
+.login-form-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold-accent), #0B2545);
+}
+
+.login-form-card .form-control:focus {
+    border-color: var(--gold-accent) !important;
+    box-shadow: 0 0 0 3.5px rgba(217, 180, 74, 0.22) !important;
+}
+
+/* Custom Unified Input Groups */
+.login-input-group .input-group-text {
+    background-color: #F8FAFC;
+    border-color: #CBD5E1;
+    color: var(--primary-navy);
+    font-size: 0.95rem;
+}
+
+.login-input-group .form-control {
+    border-color: #CBD5E1;
+    height: 46px;
+    font-size: 0.92rem;
+}
+
+.login-input-group .form-control:focus + .input-group-text,
+.login-input-group .input-group-text:has(+ .form-control:focus) {
+    border-color: var(--gold-accent);
+}
+
+/* Quick Autofill Button Styling */
+.autofill-btn-hover {
+    font-size: 0.74rem;
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+    color: var(--primary-navy);
+    transition: all 0.2s ease-in-out;
+}
+
+.autofill-btn-hover:hover {
+    background-color: #fef9c3;
+    border-color: var(--gold-accent) !important;
+    color: var(--primary-navy) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(217, 180, 74, 0.25);
+}
+
+.autofill-btn-hover:active {
+    transform: translateY(0);
+}
+
+/* ========================================================= */
+/* ADMIN DASHBOARD MODERN COMMAND COCKPIT STYLES             */
+/* ========================================================= */
+
+/* Quick Command Action Buttons */
+.admin-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+    color: var(--primary-navy);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.admin-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(11, 37, 69, 0.12);
+    border-color: var(--gold-accent);
+    color: var(--primary-navy);
+}
+
+.admin-action-btn.btn-primary-action {
+    background: linear-gradient(135deg, #0b2545 0%, #133b6b 100%);
+    color: #ffffff;
+    border-color: #0b2545;
+}
+
+.admin-action-btn.btn-primary-action:hover {
+    background: linear-gradient(135deg, #133b6b 0%, #0b2545 100%);
+    color: var(--gold-accent);
+}
+
+/* KPI Cards */
+.admin-kpi-card {
+    border-radius: 14px;
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none !important;
+    display: block;
+}
+
+.admin-kpi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.admin-kpi-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.35rem;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(4px);
+}
+
+/* Priority Attention Alert Hub */
+.admin-attention-hub {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border: 1px solid #fde68a;
+    border-left: 5px solid #d97706;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+}
+
+.admin-attention-hub.all-clear {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 1px solid #bbf7d0;
+    border-left: 5px solid #16a34a;
+}
+
+/* Domain Hub Cards */
+.admin-hub-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    height: 100%;
+    transition: all 0.2s ease;
+}
+
+.admin-hub-card:hover {
+    box-shadow: 0 8px 22px rgba(11, 37, 69, 0.08);
+}
+
+.admin-hub-header {
+    background: #fafafa;
+    border-bottom: 1px solid #edf2f7;
+    padding: 0.9rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin-metric-tile {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.admin-metric-tile:hover {
+    background: #ffffff;
+    border-color: var(--gold-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* Telemetry pill & System Status */
+.telemetry-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 0.9rem;
+    border-radius: 9px;
+    background: #f8fafc;
+    border: 1px solid #eef2f6;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.telemetry-item:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    transform: translateX(2px);
+}
+
+.telemetry-label {
+    display: flex;
+    align-items: center;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.telemetry-label i {
+    width: 20px;
+    text-align: center;
+    margin-right: 0.6rem;
+    font-size: 0.95rem;
+}
+
+.status-indicator-pulse {
+    width: 7px;
+    height: 7px;
+    background-color: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: statusPulse 2s infinite ease-in-out;
+}
+
+@keyframes statusPulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE FRAMEWORK & MOBILE ENHANCEMENTS
+   ========================================================================== */
+
+/* Dashboard Mobile Backdrop */
+.sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(7, 23, 39, 0.65);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 1045;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.sidebar-backdrop.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Fluid Typography Utilities */
+.hero-heading-responsive {
+    font-size: clamp(1.6rem, 4.5vw, 2.85rem) !important;
+    line-height: 1.28 !important;
+}
+
+.hero-subtext-responsive {
+    font-size: clamp(0.95rem, 2.2vw, 1.15rem) !important;
+    line-height: 1.7 !important;
+}
+
+/* Badge Auto-wrap & Mobile bounds */
+.badge-responsive {
+    white-space: normal !important;
+    word-break: break-word;
+    text-align: left;
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+}
+
+/* Mobile Member Directory Card */
+.member-mobile-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(16, 42, 67, 0.04);
+    margin-bottom: 0.85rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.member-mobile-card:hover {
+    border-color: var(--gold-accent);
+    box-shadow: 0 4px 12px rgba(16, 42, 67, 0.08);
+}
+
+/* -------------------------------------------------------------
+   BREAKPOINT: Large Tablets & Down (max-width: 991.98px)
+   ------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+    /* Mobile Navbar Drawer */
+    .navbar-collapse {
+        background: #0d2238;
+        border-radius: 12px;
+        margin-top: 0.75rem;
+        padding: 0.75rem 0.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(217, 180, 74, 0.2);
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+        padding: 0.75rem 1rem !important;
+        border-radius: 8px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 2px;
+        font-size: 0.92rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .navbar-dark .navbar-nav .nav-link.active {
+        background: rgba(217, 180, 74, 0.15) !important;
+        border-left: 4px solid var(--gold-accent) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+        color: var(--gold-accent) !important;
+    }
+
+    /* Submenu Accordion inside Mobile Menu */
+    .navbar-nav .dropdown-menu {
+        background: #081726 !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 8px;
+        margin: 0.25rem 0.5rem 0.5rem;
+        padding: 0.5rem;
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar-nav .dropdown-menu .dropdown-item {
+        color: rgba(255, 255, 255, 0.85) !important;
+        padding: 0.6rem 0.75rem !important;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-nav .dropdown-menu .dropdown-item:hover,
+    .navbar-nav .dropdown-menu .dropdown-item:focus {
+        background: rgba(217, 180, 74, 0.15) !important;
+        color: var(--gold-accent) !important;
+    }
+
+    /* Toggler Button Affordance */
+    .navbar-toggler-custom {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 0.75rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--white);
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+    .navbar-toggler-custom:hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: var(--gold-accent);
+    }
+}
+
+/* -------------------------------------------------------------
+   BREAKPOINT: Mobile Landscape & Small Tablets (max-width: 767.98px)
+   ------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+    /* Compact Top Institutional Header */
+    .brand-header-wrap {
+        padding-top: 0.65rem !important;
+        padding-bottom: 0.65rem !important;
+    }
+
+    .brand-logo-img {
+        width: 48px !important;
+        height: 48px !important;
+    }
+
+    .brand-title-hi {
+        font-size: 1.08rem !important;
+        line-height: 1.25 !important;
+    }
+
+    .brand-title-en {
+        font-size: 0.74rem !important;
+        letter-spacing: 0.4px !important;
+    }
+
+    .brand-badge-estd {
+        font-size: 0.68rem !important;
+        padding: 0.2rem 0.5rem !important;
+    }
+
+    /* Stacked Hero Section Actions */
+    .hero-btn-stack {
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+
+    .hero-btn-stack .btn {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    .hero-banner {
+        padding: 1.5rem !important;
+        border-radius: 12px !important;
+    }
+
+    /* Service Boxes compact padding */
+    .service-box {
+        padding: 1.15rem !important;
+    }
+
+    .service-box .icon-wrap {
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    /* Institutional Stats 2x2 Grid compact */
+    .card-stat {
+        padding: 1rem 0.75rem !important;
+    }
+
+    .card-stat i {
+        font-size: 1.6rem !important;
+    }
+
+    .card-stat h3 {
+        font-size: 1.3rem !important;
+    }
+
+    /* Global Table Container */
+    .table-responsive-custom {
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 1rem;
+    }
+}
+
+/* -------------------------------------------------------------
+   BREAKPOINT: Mobile Portrait (max-width: 575.98px)
+   ------------------------------------------------------------- */
+@media (max-width: 575.98px) {
+    /* Ticker 2-tier layout: never chop notice titles */
+    .ticker-container {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.6rem !important;
+        padding: 0.75rem 0.9rem !important;
+    }
+
+    .ticker-top-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .ticker-title-wrap {
+        width: 100% !important;
+        font-size: 0.88rem !important;
+        line-height: 1.45 !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+    }
+
+    /* Mobile Brand row layout */
+    .mobile-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .mobile-user-btn {
+        padding: 0.35rem 0.65rem !important;
+        font-size: 0.76rem !important;
+    }
+
+    /* Login Form Cards & Tabs */
+    .role-nav-segmented {
+        gap: 2px !important;
+        padding: 3px !important;
+    }
+
+    .role-nav-pill {
+        font-size: 0.74rem !important;
+        padding: 0.45rem 0.3rem !important;
+    }
+
+    /* Footer Mobile Typography & Link touch areas */
+    .footer {
+        padding-top: 2.5rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    .footer-link {
+        padding: 0.35rem 0 !important;
+        font-size: 0.84rem !important;
+    }
+}
+
+/* -------------------------------------------------------------
+   BREAKPOINT: Extra Small Devices (max-width: 380px)
+   ------------------------------------------------------------- */
+@media (max-width: 380px) {
+    .brand-logo-img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .brand-title-hi {
+        font-size: 0.98rem !important;
+    }
+
+    .brand-title-en {
+        font-size: 0.68rem !important;
+    }
+
+    .role-nav-pill span {
+        font-size: 0.7rem !important;
+    }
+}
+
+
+
+
 

@@ -11,7 +11,8 @@ if (count(get_included_files()) === 1) {
     exit("Direct access forbidden.");
 }
 
-$current_page = basename($_SERVER['SCRIPT_NAME']);
+$current_page = basename($_SERVER['SCRIPT_NAME'] ?? '');
+$request_uri = $_SERVER['REQUEST_URI'] ?? '';
 $role = currentRole();
 ?>
 
@@ -28,29 +29,29 @@ $role = currentRole();
             <i class="fa-solid fa-users"></i>
             <span>सदस्य डायरेक्टरी</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/admin/notices/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/notices/') !== false) ? 'active' : ''; ?>" title="नोटिस बोर्ड / Notices">
+        <a href="<?php echo SITE_URL; ?>/admin/notices/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/admin/notices/') !== false) ? 'active' : ''; ?>" title="नोटिस बोर्ड / Notices">
             <i class="fa-solid fa-bullhorn"></i>
             <span>नोटिस बोर्ड</span>
         </a>
 
         <div class="sidebar-heading-custom font-hindi">डिजिटल सेवाएं</div>
         
-        <a href="<?php echo SITE_URL; ?>/admin/id-cards/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/id-cards/') !== false) ? 'active' : ''; ?>" title="डिजिटल आईडी कार्ड / ID Cards">
+        <a href="<?php echo SITE_URL; ?>/admin/id-cards/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/admin/id-cards/') !== false) ? 'active' : ''; ?>" title="डिजिटल आईडी कार्ड / ID Cards">
             <i class="fa-solid fa-id-card"></i>
             <span>डिजिटल ID कार्ड</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/admin/wakalatnama/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/wakalatnama/') !== false) ? 'active' : ''; ?>" title="वकालतनामा प्रबंधन / Wakalatnama">
+        <a href="<?php echo SITE_URL; ?>/admin/wakalatnama/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/admin/wakalatnama/') !== false) ? 'active' : ''; ?>" title="वकालतनामा प्रबंधन / Wakalatnama">
             <i class="fa-solid fa-file-signature"></i>
             <span>वकालतनामा प्रबंधन</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/admin/rooms/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/rooms/') !== false) ? 'active' : ''; ?>" title="कक्ष / रूम आवंटन / Room Rent">
+        <a href="<?php echo SITE_URL; ?>/admin/rooms/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/admin/rooms/') !== false) ? 'active' : ''; ?>" title="कक्ष / रूम आवंटन / Room Rent">
             <i class="fa-solid fa-door-open"></i>
             <span>कक्ष / रूम आवंटन</span>
         </a>
 
         <div class="sidebar-heading-custom font-hindi">कोष एवं प्रशासन</div>
         
-        <a href="<?php echo SITE_URL; ?>/admin/association-fund/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/association-fund/') !== false) ? 'active' : ''; ?>" title="संघीय कोष / Association Fund">
+        <a href="<?php echo SITE_URL; ?>/admin/association-fund/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/admin/association-fund/') !== false) ? 'active' : ''; ?>" title="संघीय कोष / Association Fund">
             <i class="fa-solid fa-vault"></i>
             <span>संघीय कोष</span>
         </a>
@@ -58,11 +59,11 @@ $role = currentRole();
             <i class="fa-solid fa-indian-rupee-sign"></i>
             <span>शुल्क प्रबंधन</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/admin/elections/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/elections/') !== false) ? 'active' : ''; ?>" title="चुनाव व्यवस्था / Elections">
+        <a href="<?php echo SITE_URL; ?>/admin/elections/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/admin/elections/') !== false) ? 'active' : ''; ?>" title="चुनाव व्यवस्था / Elections">
             <i class="fa-solid fa-square-check"></i>
             <span>चुनाव व्यवस्था</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/admin/office-bearers/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/office-bearers/') !== false) ? 'active' : ''; ?>" title="कार्यकारिणी पदाधिकारी / Office Bearers">
+        <a href="<?php echo SITE_URL; ?>/admin/office-bearers/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/admin/office-bearers/') !== false) ? 'active' : ''; ?>" title="कार्यकारिणी पदाधिकारी / Office Bearers">
             <i class="fa-solid fa-sitemap"></i>
             <span>कार्यकारिणी व्यवस्था</span>
         </a>
@@ -82,23 +83,23 @@ $role = currentRole();
 
         <div class="sidebar-heading-custom font-hindi">समीक्षा एवं अनुमोदन</div>
         
-        <a href="<?php echo SITE_URL; ?>/president/notices/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/president/notices/') !== false) ? 'active' : ''; ?>" title="नोटिस समीक्षा / Review Notices">
+        <a href="<?php echo SITE_URL; ?>/president/notices/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/president/notices/') !== false) ? 'active' : ''; ?>" title="नोटिस समीक्षा / Review Notices">
             <i class="fa-solid fa-clipboard-check"></i>
             <span>नोटिस समीक्षा</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/president/wakalatnama/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/president/wakalatnama/') !== false) ? 'active' : ''; ?>" title="वकालतनामा समीक्षा / Review Wakalatnama">
+        <a href="<?php echo SITE_URL; ?>/president/wakalatnama/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/president/wakalatnama/') !== false) ? 'active' : ''; ?>" title="वकालतनामा समीक्षा / Review Wakalatnama">
             <i class="fa-solid fa-file-shield"></i>
             <span>वकालतनामा समीक्षा</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/president/id-cards/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/president/id-cards/') !== false) ? 'active' : ''; ?>" title="आईडी कार्ड समीक्षा / Review ID Cards">
+        <a href="<?php echo SITE_URL; ?>/president/id-cards/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/president/id-cards/') !== false) ? 'active' : ''; ?>" title="आईडी कार्ड समीक्षा / Review ID Cards">
             <i class="fa-solid fa-id-card-clip"></i>
             <span>आईडी कार्ड समीक्षा</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/president/association-fund/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/president/association-fund/') !== false) ? 'active' : ''; ?>" title="कोष स्वीकृति / Fund Approvals">
+        <a href="<?php echo SITE_URL; ?>/president/association-fund/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/president/association-fund/') !== false) ? 'active' : ''; ?>" title="कोष स्वीकृति / Fund Approvals">
             <i class="fa-solid fa-file-invoice-dollar"></i>
             <span>कोष स्वीकृति</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/president/elections/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/president/elections/') !== false) ? 'active' : ''; ?>" title="चुनाव समीक्षा / Election Review">
+        <a href="<?php echo SITE_URL; ?>/president/elections/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/president/elections/') !== false) ? 'active' : ''; ?>" title="चुनाव समीक्षा / Election Review">
             <i class="fa-solid fa-square-poll-vertical"></i>
             <span>चुनाव समीक्षा</span>
         </a>
@@ -122,34 +123,34 @@ $role = currentRole();
 
         <div class="sidebar-heading-custom font-hindi">प्रशासकीय प्रबंधन</div>
         
-        <a href="<?php echo SITE_URL; ?>/mahasachiv/notices/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/mahasachiv/notices/') !== false) ? 'active' : ''; ?>" title="नोटिस बोर्ड प्रबंधन / Notices">
+        <a href="<?php echo SITE_URL; ?>/mahasachiv/notices/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/mahasachiv/notices/') !== false) ? 'active' : ''; ?>" title="नोटिस बोर्ड प्रबंधन / Notices">
             <i class="fa-solid fa-envelope-open-text"></i>
             <span>नोटिस बोर्ड प्रबंधन</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/admin/id-cards/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/id-cards/') !== false) ? 'active' : ''; ?>" title="आईडी कार्ड अनुरोध / ID Requests">
+        <a href="<?php echo SITE_URL; ?>/admin/id-cards/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/admin/id-cards/') !== false) ? 'active' : ''; ?>" title="आईडी कार्ड अनुरोध / ID Requests">
             <i class="fa-solid fa-id-card"></i>
             <span>आईडी कार्ड अनुरोध</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/mahasachiv/wakalatnama/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/wakalatnama/') !== false || strpos($_SERVER['REQUEST_URI'], '/mahasachiv/wakalatnama/') !== false) ? 'active' : ''; ?>" title="वकालतनामा अनुरोध / Wakalatnama">
+        <a href="<?php echo SITE_URL; ?>/mahasachiv/wakalatnama/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/admin/wakalatnama/') !== false || strpos($request_uri, '/mahasachiv/wakalatnama/') !== false) ? 'active' : ''; ?>" title="वकालतनामा अनुरोध / Wakalatnama">
             <i class="fa-solid fa-file-contract"></i>
             <span>वकालतनामा अनुरोध</span>
         </a>
 
         <div class="sidebar-heading-custom font-hindi">कोष एवं संसाधन</div>
         
-        <a href="<?php echo SITE_URL; ?>/admin/rooms/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/rooms/') !== false) ? 'active' : ''; ?>" title="कक्ष / चैंबर आवंटन / Rooms Allotment">
+        <a href="<?php echo SITE_URL; ?>/admin/rooms/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/admin/rooms/') !== false) ? 'active' : ''; ?>" title="कक्ष / चैंबर आवंटन / Rooms Allotment">
             <i class="fa-solid fa-house-laptop"></i>
             <span>कक्ष / चैंबर आवंटन</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/admin/elections/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/elections/') !== false) ? 'active' : ''; ?>" title="चुनाव व्यवस्था / Election">
+        <a href="<?php echo SITE_URL; ?>/admin/elections/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/admin/elections/') !== false) ? 'active' : ''; ?>" title="चुनाव व्यवस्था / Election">
             <i class="fa-solid fa-square-check"></i>
             <span>चुनाव व्यवस्था</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/admin/office-bearers/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/office-bearers/') !== false) ? 'active' : ''; ?>" title="कार्यकारिणी व्यवस्था / Bearers">
+        <a href="<?php echo SITE_URL; ?>/admin/office-bearers/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/admin/office-bearers/') !== false) ? 'active' : ''; ?>" title="कार्यकारिणी व्यवस्था / Bearers">
             <i class="fa-solid fa-people-group"></i>
             <span>कार्यकारिणी व्यवस्था</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/admin/association-fund/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/association-fund/') !== false) ? 'active' : ''; ?>" title="संघीय कोष / Assoc. Fund">
+        <a href="<?php echo SITE_URL; ?>/admin/association-fund/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/admin/association-fund/') !== false) ? 'active' : ''; ?>" title="संघीय कोष / Assoc. Fund">
             <i class="fa-solid fa-vault"></i>
             <span>संघीय कोष</span>
         </a>
@@ -171,34 +172,34 @@ $role = currentRole();
 
         <div class="sidebar-heading-custom font-hindi">व्यक्तिगत सेवाएं</div>
         
-        <a href="<?php echo SITE_URL; ?>/member/id-card.php" class="sidebar-btn-custom font-hindi <?php echo ($current_page === 'id-card.php' && strpos($_SERVER['REQUEST_URI'], '/member/') !== false) ? 'active' : ''; ?>" title="डिजिटल आईडी कार्ड / ID Card">
+        <a href="<?php echo SITE_URL; ?>/member/id-card.php" class="sidebar-btn-custom font-hindi <?php echo ($current_page === 'id-card.php' && strpos($request_uri, '/member/') !== false) ? 'active' : ''; ?>" title="डिजिटल आईडी कार्ड / ID Card">
             <i class="fa-solid fa-id-card-clip"></i>
             <span>डिजिटल ID कार्ड</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/member/wakalatnama/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/member/wakalatnama/') !== false) ? 'active' : ''; ?>" title="वकालतनामा जारी करें / Wakalatnama">
+        <a href="<?php echo SITE_URL; ?>/member/wakalatnama/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/member/wakalatnama/') !== false) ? 'active' : ''; ?>" title="वकालतनामा जारी करें / Wakalatnama">
             <i class="fa-solid fa-file-lines"></i>
             <span>वकालतनामा जारी करें</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/member/fees/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/member/fees/') !== false) ? 'active' : ''; ?>" title="वार्षिक संघ शुल्क / Bar Fee">
+        <a href="<?php echo SITE_URL; ?>/member/fees/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/member/fees/') !== false) ? 'active' : ''; ?>" title="वार्षिक संघ शुल्क / Bar Fee">
             <i class="fa-solid fa-money-check-dollar"></i>
             <span>वार्षिक संघ शुल्क</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/member/chamber/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/member/chamber/') !== false) ? 'active' : ''; ?>" title="कक्ष किराया अनुरोध / Room Rent">
+        <a href="<?php echo SITE_URL; ?>/member/chamber/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/member/chamber/') !== false) ? 'active' : ''; ?>" title="कक्ष किराया अनुरोध / Room Rent">
             <i class="fa-solid fa-building-user"></i>
             <span>कक्ष किराया अनुरोध</span>
         </a>
 
         <div class="sidebar-heading-custom font-hindi">संघीय जानकारी</div>
         
-        <a href="<?php echo SITE_URL; ?>/member/election/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/member/election/') !== false) ? 'active' : ''; ?>" title="चुनाव केंद्र / Election Center">
+        <a href="<?php echo SITE_URL; ?>/member/election/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/member/election/') !== false) ? 'active' : ''; ?>" title="चुनाव केंद्र / Election Center">
             <i class="fa-solid fa-check-to-slot"></i>
             <span>चुनाव केंद्र</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/member/notices/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/member/notices/') !== false) ? 'active' : ''; ?>" title="संघीय सूचनाएं / Notices">
+        <a href="<?php echo SITE_URL; ?>/member/notices/index.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/member/notices/') !== false) ? 'active' : ''; ?>" title="संघीय सूचनाएं / Notices">
             <i class="fa-solid fa-envelope-open-text"></i>
             <span>संघीय सूचनाएं</span>
         </a>
-        <a href="<?php echo SITE_URL; ?>/member/association-fund.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($_SERVER['REQUEST_URI'], '/member/association-fund.php') !== false) ? 'active' : ''; ?>" title="वित्तीय रिपोर्ट / Financial Report">
+        <a href="<?php echo SITE_URL; ?>/member/association-fund.php" class="sidebar-btn-custom font-hindi <?php echo (strpos($request_uri, '/member/association-fund.php') !== false) ? 'active' : ''; ?>" title="वित्तीय रिपोर्ट / Financial Report">
             <i class="fa-solid fa-receipt"></i>
             <span>वित्तीय रिपोर्ट</span>
         </a>

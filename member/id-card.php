@@ -55,8 +55,9 @@ if ($card) {
         }
     }
     
-    // Generate QR Code cached image
-    $qr_filename = 'qr_' . $card['qr_token'] . '.png';
+    // Generate QR Code cached image (PNG if GD is enabled, SVG vector fallback otherwise)
+    $has_gd = extension_loaded('gd');
+    $qr_filename = 'qr_' . $card['qr_token'] . ($has_gd ? '.png' : '.svg');
     $qr_dir = __DIR__ . '/../uploads/qrcodes/';
     $qr_filepath = $qr_dir . $qr_filename;
     $qr_webpath = SITE_URL . '/uploads/qrcodes/' . $qr_filename;
@@ -67,7 +68,11 @@ if ($card) {
 
     if (!file_exists($qr_filepath)) {
         $verify_url = SITE_URL . '/verify-id-card.php?token=' . $card['qr_token'];
-        QRcode::png($verify_url, $qr_filepath, QR_ECLEVEL_L, 3, 1);
+        if ($has_gd) {
+            QRcode::png($verify_url, $qr_filepath, QR_ECLEVEL_L, 3, 1);
+        } else {
+            QRcode::svg($verify_url, $qr_filepath, QR_ECLEVEL_L, 3, 1);
+        }
     }
 }
 ?>
@@ -78,9 +83,9 @@ if ($card) {
 <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2 no-print font-hindi">
     <h4 class="text-navy-custom fw-bold mb-0">मेरा डिजिटल पहचान पत्र (My Digital ID)</h4>
     <div class="d-flex gap-2">
-        <a href="id-card/history.php" class="btn btn-xs btn-outline-navy fw-semibold"><i class="bi bi-clock-history me-1"></i>आवेदन इतिहास (History)</a>
+        <a href="id-card/history.php" class="btn btn-xs btn-outline-navy fw-semibold"><i class="fa-solid fa-clock-rotate-left me-1"></i>आवेदन इतिहास (History)</a>
         <?php if ($card): ?>
-            <button class="btn btn-xs btn-navy fw-semibold" onclick="window.print();"><i class="bi bi-printer-fill me-1 text-gold-custom"></i>प्रिंट करें (Print Card)</button>
+            <button class="btn btn-xs btn-navy fw-semibold" onclick="window.print();"><i class="fa-solid fa-print me-1 text-gold-custom"></i>प्रिंट करें (Print Card)</button>
         <?php endif; ?>
     </div>
 </div>
@@ -88,13 +93,13 @@ if ($card) {
 <?php if (!$card): ?>
     <!-- NO CARD EXISTS STATE -->
     <div class="card p-5 text-center border-0 shadow-sm rounded-3 font-hindi no-print">
-        <i class="bi bi-card-image display-3 text-muted mb-3 d-block"></i>
+        <i class="fa-solid fa-id-card display-3 text-muted mb-3 d-block"></i>
         <h4 class="fw-bold text-navy-custom mb-2">आपका डिजिटल ID Card अभी जारी नहीं हुआ है।</h4>
         <p class="text-muted small mb-4">यदि आपने पहले से आवेदन नहीं किया है, तो नीचे दिए बटन पर क्लिक कर नया आईडी कार्ड अनुरोध सबमिट करें।</p>
         
         <div class="d-inline-block">
             <a href="id-card/apply.php?type=new" class="btn btn-navy px-4 py-2 fw-semibold">
-                <i class="bi bi-plus-circle-fill text-gold-custom me-2"></i> ID Card के लिए आवेदन करें
+                <i class="fa-solid fa-circle-plus text-gold-custom me-2"></i> ID Card के लिए आवेदन करें
             </a>
         </div>
     </div>
@@ -103,11 +108,11 @@ if ($card) {
     <!-- Expiry warning alerts -->
     <?php if ($is_expired): ?>
         <div class="alert alert-danger border-0 font-hindi mb-3 shadow-xs no-print">
-            <i class="bi bi-x-octagon-fill me-2"></i><strong>आपका ID Card समाप्त हो गया है (Expired)!</strong> कृपया तुरंत नवीनीकरण (Renewal) के लिए आवेदन करें।
+            <i class="fa-solid fa-circle-xmark me-2"></i><strong>आपका ID Card समाप्त हो गया है (Expired)!</strong> कृपया तुरंत नवीनीकरण (Renewal) के लिए आवेदन करें।
         </div>
     <?php elseif ($expiring_soon): ?>
         <div class="alert alert-warning border-0 font-hindi mb-3 shadow-xs no-print">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i><strong>आपका ID Card शीघ्र समाप्त होने वाला है!</strong> यह तिथि <?php echo date('d-m-Y', strtotime($card['valid_until'])); ?> को समाप्त हो जाएगा।
+            <i class="fa-solid fa-triangle-exclamation me-2"></i><strong>आपका ID Card शीघ्र समाप्त होने वाला है!</strong> यह तिथि <?php echo date('d-m-Y', strtotime($card['valid_until'])); ?> को समाप्त हो जाएगा।
         </div>
     <?php endif; ?>
 
@@ -225,13 +230,13 @@ if ($card) {
     <div class="row justify-content-center g-3 mt-4 mb-5 no-print font-hindi small text-center">
         <div class="col-md-8 d-flex flex-wrap justify-content-center gap-2">
             <a href="id-card/apply.php?type=renewal&card_id=<?php echo $card['id']; ?>" class="btn btn-navy py-2 px-3 <?php echo (!$is_expired && !$expiring_soon) ? 'disabled' : ''; ?>">
-                <i class="bi bi-arrow-repeat me-1 text-gold-custom"></i> नवीनीकरण अनुरोध (Renew Card)
+                <i class="fa-solid fa-rotate me-1 text-gold-custom"></i> नवीनीकरण अनुरोध (Renew Card)
             </a>
             <a href="id-card/apply.php?type=duplicate&card_id=<?php echo $card['id']; ?>" class="btn btn-navy py-2 px-3">
-                <i class="bi bi-file-earmark-plus me-1 text-gold-custom"></i> डुप्लीकेट कार्ड (Duplicate ID)
+                <i class="fa-solid fa-file-circle-plus me-1 text-gold-custom"></i> डुप्लीकेट कार्ड (Duplicate ID)
             </a>
             <a href="id-card/apply.php?type=lost&card_id=<?php echo $card['id']; ?>" class="btn btn-danger py-2 px-3">
-                <i class="bi bi-shield-slash-fill me-1"></i> खोया कार्ड रिपोर्ट (Report Lost)
+                <i class="fa-solid fa-triangle-exclamation me-1"></i> खोया कार्ड रिपोर्ट (Report Lost)
             </a>
         </div>
     </div>

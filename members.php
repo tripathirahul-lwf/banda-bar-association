@@ -77,11 +77,11 @@ if ($db) {
             <input type="text" class="form-control" id="search_enrollment" name="search_enrollment" value="<?php echo e($search_enrollment); ?>" placeholder="e.g. UP/1234/2005">
         </div>
         
-        <div class="col-12 d-flex gap-2 justify-content-end mt-4">
-            <a href="members.php" class="btn btn-outline-secondary font-hindi px-4">
+        <div class="col-12 d-flex gap-2 justify-content-md-end justify-content-stretch mt-3 mt-md-4">
+            <a href="members.php" class="btn btn-outline-secondary font-hindi px-3 px-md-4 flex-fill flex-md-grow-0 text-center">
                 <i class="bi bi-x-circle me-1"></i>साफ़ करें
             </a>
-            <button type="submit" class="btn btn-navy font-hindi px-4">
+            <button type="submit" class="btn btn-navy font-hindi px-3 px-md-4 flex-fill flex-md-grow-0">
                 <i class="bi bi-funnel-fill me-1 text-gold-custom"></i>खोजें / Search
             </button>
         </div>
@@ -94,8 +94,8 @@ if ($db) {
     <strong>सुरक्षा चेतावनी:</strong> अधिवक्ताओं की गोपनीयता सुनिश्चित करने के लिए व्यक्तिगत पते, जन्म तिथि, हस्ताक्षर, आधार विवरण, ईमेल या निजी फोन नंबर सार्वजनिक रूप से प्रदर्शित नहीं किए गए हैं।
 </div>
 
-<!-- Directory Results Table -->
-<div class="bg-white p-3 rounded-3 shadow-sm border border-light">
+<!-- Directory Results -->
+<div class="bg-white p-3 p-md-4 rounded-3 shadow-sm border border-light">
     <?php if (empty($members)): ?>
         <div class="text-center py-5">
             <i class="bi bi-person-x text-muted display-4 mb-3 d-block"></i>
@@ -103,7 +103,44 @@ if ($db) {
             <p class="text-muted small">दर्ज की गई खोज श्रेणियों से मेल खाता कोई सक्रिय सदस्य रिकॉर्ड उपलब्ध नहीं है।</p>
         </div>
     <?php else: ?>
-        <div class="table-responsive table-responsive-custom">
+        <!-- Mobile Card View (Screens < 768px) -->
+        <div class="d-md-none font-hindi">
+            <?php foreach ($members as $member): ?>
+                <div class="member-mobile-card">
+                    <div class="d-flex align-items-center gap-3 mb-2.5">
+                        <div class="rounded-circle bg-light d-flex align-items-center justify-content-center border flex-shrink-0" style="width: 44px; height: 44px; overflow:hidden;">
+                            <?php if (!empty($member['photo']) && $member['photo'] !== 'default_advocate.png'): ?>
+                                <img src="uploads/photos/<?php echo e($member['photo']); ?>" alt="Photo" style="width:100%; height:100%; object-fit:cover;">
+                            <?php else: ?>
+                                <i class="bi bi-person text-muted fs-4"></i>
+                            <?php endif; ?>
+                        </div>
+                        <div class="overflow-hidden">
+                            <h6 class="fw-bold text-navy-custom mb-0 text-truncate"><?php echo e($member['full_name']); ?></h6>
+                            <small class="text-muted font-hindi">पंजीकरण: <?php echo e($member['enrollment_no'] ?: 'एन/ए'); ?></small>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center bg-light-custom p-2 rounded-2 mb-2.5 small">
+                        <div>
+                            <span class="text-muted font-size-xs d-block">सदस्यता संख्या</span>
+                            <strong class="text-navy-custom"><?php echo e($member['membership_no']); ?></strong>
+                        </div>
+                        <div class="text-end">
+                            <span class="text-muted font-size-xs d-block">कक्ष / चैंबर</span>
+                            <span class="text-secondary-custom fw-semibold"><?php echo !empty($member['chamber_no']) ? 'Chamber ' . e($member['chamber_no']) : 'आवंटित नहीं'; ?></span>
+                        </div>
+                    </div>
+
+                    <a href="member-profile.php?id=<?php echo e($member['id']); ?>" class="btn btn-sm btn-outline-navy w-100 fw-semibold d-flex align-items-center justify-content-center gap-1.5 py-1.5">
+                        <span>पूर्ण प्रोफ़ाइल देखें</span> <i class="bi bi-chevron-right small"></i>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- Desktop Table View (Screens >= 768px) -->
+        <div class="table-responsive table-responsive-custom d-none d-md-block">
             <table class="table table-hover table-striped mb-0 align-middle">
                 <thead class="table-dark text-uppercase bg-navy-custom text-white" style="font-size: 0.85rem;">
                     <tr>

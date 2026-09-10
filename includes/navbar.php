@@ -10,51 +10,51 @@ if (count(get_included_files()) === 1) {
 }
 ?>
 <!-- Top Institutional Header Banner -->
-<header class="py-3 bg-white border-bottom border-gold-custom" style="position: relative; z-index: 1030;">
+<header class="py-2 py-md-3 bg-white border-bottom border-gold-custom brand-header-wrap" style="position: relative; z-index: 1030;">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
             <!-- Left Side: Shield Logo & Organization Title -->
-            <div class="col-lg-8 col-md-7 col-12 d-flex align-items-center mb-3 mb-md-0">
-                <a href="<?php echo SITE_URL; ?>/index.php" class="text-decoration-none me-3 flex-shrink-0">
-                    <img src="<?php echo SITE_URL; ?>/assets/images/logo.png" alt="DBA Banda Official Emblem" class="rounded-circle shadow-sm" style="width: 66px; height: 66px; object-fit: cover; border: 2.5px solid var(--gold-accent);" onerror="this.src='<?php echo SITE_URL; ?>/assets/images/logo.svg'">
+            <div class="d-flex align-items-center flex-grow-1" style="min-width: 200px;">
+                <a href="<?php echo SITE_URL; ?>/index.php" class="text-decoration-none me-2.5 me-md-3 flex-shrink-0">
+                    <img src="<?php echo SITE_URL; ?>/assets/images/logo.png" alt="DBA Banda Official Emblem" class="rounded-circle shadow-sm brand-logo-img" style="width: 62px; height: 62px; object-fit: cover; border: 2.5px solid var(--gold-accent);" onerror="this.src='<?php echo SITE_URL; ?>/assets/images/logo.svg'">
                 </a>
-                <div>
-                    <h1 class="h4 mb-0 fw-bold text-navy-custom hindi-text d-flex align-items-center gap-2">
+                <div class="overflow-hidden">
+                    <h1 class="h4 mb-0 fw-bold text-navy-custom hindi-text brand-title-hi text-truncate">
                         <?php echo e(getSetting('association_name_hi', 'जिला अधिवक्ता संघ, बांदा')); ?>
                     </h1>
-                    <h2 class="h6 mb-0 fw-semibold text-secondary-custom english-text text-uppercase tracking-wider" style="font-size: 0.95rem; letter-spacing: 0.8px;">
+                    <h2 class="h6 mb-0 fw-semibold text-secondary-custom english-text text-uppercase tracking-wider brand-title-en text-truncate" style="font-size: 0.92rem; letter-spacing: 0.8px;">
                         <?php echo e(getSetting('association_name_en', 'District Bar Association, Banda')); ?>
                     </h2>
-                    <div class="d-flex align-items-center gap-2 mt-1">
-                        <span class="badge bg-gold-custom text-navy-custom font-hindi px-2.5 py-1 fw-bold" style="font-size: 0.72rem;">
-                            <i class="fa-solid fa-award me-1"></i>स्थापना वर्ष <?php echo e(getSetting('established_year', '१९३७')); ?>
+                    <div class="d-flex align-items-center gap-2 mt-0.5">
+                        <span class="badge bg-gold-custom text-navy-custom font-hindi px-2 py-0.5 fw-bold brand-badge-estd" style="font-size: 0.7rem;">
+                            <i class="fa-solid fa-award me-1"></i>स्थापना: <?php echo e(getSetting('established_year', '1937')); ?>
                         </span>
-                        <span class="text-muted small english-text fw-medium" style="font-size: 0.75rem;">
-                            | Estd. <?php echo e(getSetting('established_year', '1937')); ?> • Uttar Pradesh
+                        <span class="text-muted small english-text fw-medium d-none d-sm-inline" style="font-size: 0.72rem;">
+                            • Uttar Pradesh
                         </span>
                     </div>
                 </div>
             </div>
             
             <!-- Right Side: Login CTA / Member Info -->
-            <div class="col-lg-4 col-md-5 col-12 d-flex justify-content-md-end justify-content-start align-items-center">
+            <div class="d-flex align-items-center flex-shrink-0 ms-auto">
                 <?php if (is_logged_in()): ?>
                     <div class="dropdown">
-                        <button class="btn btn-outline-navy btn-sm dropdown-toggle d-flex align-items-center gap-2 px-3 py-2 shadow-sm rounded-pill" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="border: 1.5px solid var(--gold-accent);">
+                        <button class="btn btn-outline-navy btn-sm dropdown-toggle d-flex align-items-center gap-1.5 px-2.5 px-md-3 py-1.5 py-md-2 shadow-sm rounded-pill mobile-user-btn" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="border: 1.5px solid var(--gold-accent);">
                             <i class="fa-solid fa-circle-user fs-5 text-gold-custom"></i>
-                            <span class="fw-medium text-truncate" style="max-width: 140px;"><?php echo sanitize($_SESSION['username']); ?></span>
+                            <span class="fw-medium text-truncate d-none d-sm-inline" style="max-width: 120px;"><?php echo sanitize($_SESSION['username']); ?></span>
                             <span class="badge bg-gold-custom text-navy-custom font-size-xs px-2"><?php echo strtoupper(sanitize($_SESSION['user_role'])); ?></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2" aria-labelledby="userMenuButton">
                             <li>
-                                <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="<?php echo SITE_URL; ?>/<?php echo sanitize($_SESSION['user_role']); ?>/index.php">
+                                <a class="dropdown-item py-2 d-flex align-items-center gap-2 font-hindi" href="<?php echo SITE_URL; ?>/<?php echo sanitize($_SESSION['user_role']); ?>/index.php">
                                     <i class="fa-solid fa-gauge-high text-navy-custom"></i>
                                     <span>डैशबोर्ड (Dashboard)</span>
                                 </a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <a class="dropdown-item py-2 text-danger d-flex align-items-center gap-2" href="<?php echo SITE_URL; ?>/login.php?action=logout">
+                                <a class="dropdown-item py-2 text-danger d-flex align-items-center gap-2 font-hindi" href="<?php echo SITE_URL; ?>/login.php?action=logout">
                                     <i class="fa-solid fa-right-from-bracket"></i>
                                     <span>लॉगआउट (Logout)</span>
                                 </a>
@@ -62,9 +62,9 @@ if (count(get_included_files()) === 1) {
                         </ul>
                     </div>
                 <?php else: ?>
-                    <a href="<?php echo SITE_URL; ?>/login.php" class="btn btn-navy d-inline-flex align-items-center gap-2 px-3 py-2 shadow-sm rounded-pill" style="border: 1.5px solid var(--gold-accent);">
+                    <a href="<?php echo SITE_URL; ?>/login.php" class="btn btn-navy d-inline-flex align-items-center gap-1.5 px-2.5 px-md-3 py-1.5 py-md-2 shadow-sm rounded-pill mobile-user-btn" style="border: 1.5px solid var(--gold-accent);">
                         <i class="fa-solid fa-lock text-gold-custom"></i>
-                        <span class="fw-semibold font-hindi">सदस्य लॉगिन / Member Login</span>
+                        <span class="fw-semibold font-hindi small">लॉगिन<span class="d-none d-md-inline"> / Login</span></span>
                     </a>
                 <?php endif; ?>
             </div>
@@ -73,38 +73,44 @@ if (count(get_included_files()) === 1) {
 </header>
 
 <!-- Main Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-navy-custom py-2 shadow-sm sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-navy-custom py-1.5 py-lg-2 shadow-sm sticky-top">
     <div class="container">
-        <!-- Toggler for Mobile Navigation -->
-        <button class="navbar-toggler border-0 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <!-- Mobile Bar Brand / Status Hint -->
+        <span class="d-lg-none text-white-50 font-hindi small fw-medium">
+            <i class="fa-solid fa-shield-halved text-gold-custom me-1"></i>अधिकृत पोर्टल
+        </span>
+        
+        <!-- Toggler for Mobile Navigation with Clear Label -->
+        <button class="navbar-toggler navbar-toggler-custom border-0 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon me-1"></span>
+            <span class="font-hindi small fw-bold">मेन्यू</span>
         </button>
         
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-between text-uppercase fw-semibold" style="font-size: 0.85rem; letter-spacing: 0.5px;">
                 <li class="nav-item">
                     <a class="nav-link <?php echo is_page_active('index.php'); ?>" href="<?php echo SITE_URL; ?>/index.php">
-                        <i class="bi bi-house-door-fill me-1"></i>मुख्य पृष्ठ (Home)
+                        <i class="bi bi-house-door-fill me-1 text-gold-custom"></i>मुख्य पृष्ठ (Home)
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php echo is_page_active('about.php'); ?>" href="<?php echo SITE_URL; ?>/about.php">
-                        परिचय (About Us)
+                        <i class="fa-solid fa-landmark me-1 d-lg-none text-gold-custom"></i>परिचय (About Us)
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php echo is_page_active('office-bearers.php'); ?>" href="<?php echo SITE_URL; ?>/office-bearers.php">
-                        पदाधिकारी (Office Bearers)
+                        <i class="fa-solid fa-users-viewfinder me-1 d-lg-none text-gold-custom"></i>पदाधिकारी (Office Bearers)
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php echo is_page_active('members.php'); ?> <?php echo is_page_active('member-profile.php'); ?>" href="<?php echo SITE_URL; ?>/members.php">
-                        सदस्य (Members)
+                        <i class="fa-solid fa-address-book me-1 d-lg-none text-gold-custom"></i>सदस्य (Members)
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php echo is_page_active('notices.php'); ?>" href="<?php echo SITE_URL; ?>/notices.php">
-                        सूचनाएं (Notices)
+                        <i class="fa-solid fa-bullhorn me-1 d-lg-none text-gold-custom"></i>सूचनाएं (Notices)
                     </a>
                 </li>
                 
@@ -150,7 +156,7 @@ if (count(get_included_files()) === 1) {
                 
                 <li class="nav-item">
                     <a class="nav-link <?php echo is_page_active('contact.php'); ?>" href="<?php echo SITE_URL; ?>/contact.php">
-                        संपर्क (Contact)
+                        <i class="fa-solid fa-envelope me-1 d-lg-none text-gold-custom"></i>संपर्क (Contact)
                     </a>
                 </li>
             </ul>
@@ -161,23 +167,27 @@ if (count(get_included_files()) === 1) {
 <!-- Main Container Start -->
 <main class="flex-shrink-0 py-4">
     <div class="container">
-        <!-- Global Flash Messages Notification Block -->
-        <?php foreach (['success', 'danger', 'warning', 'info'] as $type): ?>
-            <?php if (has_flash_message($type)): ?>
-                <div class="alert alert-<?php echo $type; ?> alert-dismissible fade show border-0 shadow-sm rounded-3 mb-4" role="alert">
-                    <div class="d-flex align-items-center gap-2">
-                        <?php if ($type === 'success'): ?>
-                            <i class="bi bi-check-circle-fill text-success fs-5"></i>
-                        <?php elseif ($type === 'danger'): ?>
-                            <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
-                        <?php elseif ($type === 'warning'): ?>
-                            <i class="bi bi-exclamation-circle-fill text-warning fs-5"></i>
-                        <?php else: ?>
-                            <i class="bi bi-info-circle-fill text-info fs-5"></i>
-                        <?php endif; ?>
-                        <div><?php echo get_flash_message($type); ?></div>
+        <!-- Global Flash Messages Notification Block (Deferred on login page for inline card placement) -->
+        <?php 
+        $current_script = basename($_SERVER['SCRIPT_NAME'] ?? '');
+        if ($current_script !== 'login.php'): 
+            foreach (['success', 'danger', 'warning', 'info'] as $type): 
+                if (has_flash_message($type)): ?>
+                    <div class="alert alert-<?php echo $type; ?> alert-dismissible fade show border-0 shadow-sm rounded-3 mb-4" role="alert">
+                        <div class="d-flex align-items-center gap-2">
+                            <?php if ($type === 'success'): ?>
+                                <i class="fa-solid fa-circle-check text-success fs-5"></i>
+                            <?php elseif ($type === 'danger'): ?>
+                                <i class="fa-solid fa-triangle-exclamation text-danger fs-5"></i>
+                            <?php elseif ($type === 'warning'): ?>
+                                <i class="fa-solid fa-circle-exclamation text-warning fs-5"></i>
+                            <?php else: ?>
+                                <i class="fa-solid fa-circle-info text-info fs-5"></i>
+                            <?php endif; ?>
+                            <div><?php echo get_flash_message($type); ?></div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            <?php endif; ?>
-        <?php endforeach; ?>
+                <?php endif; 
+            endforeach; 
+        endif; ?>

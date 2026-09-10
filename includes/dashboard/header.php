@@ -128,6 +128,9 @@ $fullTitle = (isset($pageTitle) ? $pageTitle . " | " : "") . $association_name_h
         </div>
     </div>
 
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
     <!-- Content Area (Right Side) -->
     <div class="dashboard-content-area">
         <!-- Sticky Topbar -->

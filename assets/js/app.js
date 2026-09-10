@@ -59,23 +59,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Login Form Validation
+    // 2. Login Form Validation & Mature UX
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             let isValid = true;
-            const username = document.getElementById('username');
+            const identifier = document.getElementById('identifier') || document.getElementById('username');
             const password = document.getElementById('password');
             
             resetErrors(loginForm);
             
-            if (!username.value.trim()) {
-                showError(username, 'यूज़रनेम दर्ज करें। (Username is required.)');
+            if (!identifier || !identifier.value.trim()) {
+                if (identifier) {
+                    showError(identifier, 'कृपया यूज़रनेम, सदस्यता संख्या या मोबाइल नंबर दर्ज करें। (Identifier required.)');
+                }
                 isValid = false;
             }
             
-            if (!password.value.trim()) {
-                showError(password, 'पासवर्ड दर्ज करें। (Password is required.)');
+            if (!password || !password.value.trim()) {
+                if (password) {
+                    showError(password, 'कृपया पासवर्ड दर्ज करें। (Password required.)');
+                }
                 isValid = false;
             }
             
@@ -89,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showError(element, message) {
         element.classList.add('is-invalid');
         const feedback = document.createElement('div');
-        feedback.className = 'invalid-feedback fw-medium font-size-xs mt-1';
+        feedback.className = 'invalid-feedback fw-medium font-size-xs mt-1 font-hindi';
         feedback.textContent = message;
         element.parentNode.appendChild(feedback);
     }
@@ -106,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Password Visibility Toggle (Feature Enhancement)
+    // 3. Password Visibility Toggle (FontAwesome & Bootstrap compatible)
     const togglePasswordBtn = document.getElementById('togglePasswordBtn');
     if (togglePasswordBtn) {
         togglePasswordBtn.addEventListener('click', function() {
@@ -115,26 +119,72 @@ document.addEventListener('DOMContentLoaded', () => {
             if (passwordInput && icon) {
                 if (passwordInput.type === 'password') {
                     passwordInput.type = 'text';
-                    icon.classList.remove('bi-eye-slash');
-                    icon.classList.add('bi-eye');
+                    icon.classList.remove('fa-eye-slash', 'bi-eye-slash');
+                    icon.classList.add('fa-eye', 'bi-eye');
                 } else {
                     passwordInput.type = 'password';
-                    icon.classList.remove('bi-eye');
-                    icon.classList.add('bi-eye-slash');
+                    icon.classList.remove('fa-eye', 'bi-eye');
+                    icon.classList.add('fa-eye-slash', 'bi-eye-slash');
                 }
             }
         });
     }
 
-    // 4. Dashboard Sidebar Collapsing Toggle (Requirement 55)
+    // 4. Caps Lock Warning Detector
+    const passwordInputForCaps = document.getElementById('password');
+    const capslockAlert = document.getElementById('capslockAlert');
+    if (passwordInputForCaps && capslockAlert) {
+        passwordInputForCaps.addEventListener('keyup', function(e) {
+            if (e.getModifierState && e.getModifierState('CapsLock')) {
+                capslockAlert.classList.remove('d-none');
+            } else {
+                capslockAlert.classList.add('d-none');
+            }
+        });
+    }
+
+    // 5. Global helper for Demo Credential 1-Click Auto-fill
+    window.autoFillCredentials = function(ident, pass) {
+        const identInput = document.getElementById('identifier') || document.getElementById('username');
+        const passInput = document.getElementById('password');
+        if (identInput && passInput) {
+            identInput.value = ident;
+            passInput.value = pass;
+            identInput.classList.remove('is-invalid');
+            passInput.classList.remove('is-invalid');
+            identInput.classList.add('is-valid');
+            passInput.classList.add('is-valid');
+            setTimeout(() => {
+                identInput.classList.remove('is-valid');
+                passInput.classList.remove('is-valid');
+            }, 1500);
+            identInput.focus();
+        }
+    };
+
+    // 6. Dashboard Sidebar Collapsing Toggle & Mobile Backdrop
     const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
-    if (sidebarToggleBtn) {
+    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+    const sidebar = document.getElementById('dashboardSidebar');
+
+    if (sidebarToggleBtn && sidebar) {
         sidebarToggleBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            const sidebar = document.getElementById('dashboardSidebar');
-            if (sidebar) {
-                sidebar.classList.toggle('collapsed');
+            sidebar.classList.toggle('collapsed');
+            if (sidebarBackdrop && window.innerWidth <= 992) {
+                if (!sidebar.classList.contains('collapsed')) {
+                    sidebarBackdrop.classList.add('show');
+                } else {
+                    sidebarBackdrop.classList.remove('show');
+                }
             }
+        });
+    }
+
+    if (sidebarBackdrop && sidebar) {
+        sidebarBackdrop.addEventListener('click', function() {
+            sidebar.classList.add('collapsed');
+            sidebarBackdrop.classList.remove('show');
         });
     }
 });

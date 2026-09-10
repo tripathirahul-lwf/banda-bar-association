@@ -118,23 +118,28 @@ if ($db) {
 
 <!-- Latest Important Notice Ticker -->
 <?php if ($ticker_notice): ?>
-    <div class="ticker-container py-2.5 px-3 mb-4 shadow-sm font-hindi small d-flex align-items-center gap-3">
-        <span class="badge bg-danger text-white px-2.5 py-1.5 fw-bold text-uppercase pulse-badge d-inline-flex align-items-center gap-1.5" style="letter-spacing: 0.5px; font-size: 0.75rem;">
-            <i class="fa-solid fa-bullhorn"></i> महत्वपूर्ण सूचना
-        </span>
-        <div class="text-navy-custom flex-grow-1 text-truncate fw-semibold">
+    <div class="ticker-container py-2.5 px-3 mb-4 shadow-sm font-hindi small d-flex align-items-center gap-2 gap-md-3">
+        <div class="ticker-top-row d-flex align-items-center gap-2">
+            <span class="badge bg-danger text-white px-2.5 py-1.5 fw-bold text-uppercase pulse-badge d-inline-flex align-items-center gap-1.5" style="letter-spacing: 0.5px; font-size: 0.75rem;">
+                <i class="fa-solid fa-bullhorn"></i> महत्वपूर्ण सूचना
+            </span>
+            <a href="notice.php?slug=<?php echo urlencode($ticker_notice['slug']); ?>" class="btn btn-sm btn-navy py-1 px-2.5 fw-semibold rounded-pill text-nowrap d-sm-none ms-auto" style="font-size: 0.76rem;">
+                पढ़ें <i class="fa-solid fa-arrow-right ms-1"></i>
+            </a>
+        </div>
+        <div class="text-navy-custom flex-grow-1 ticker-title-wrap fw-semibold">
             <a href="notice.php?slug=<?php echo urlencode($ticker_notice['slug']); ?>" class="text-navy-custom text-decoration-none">
                 <?php echo e($ticker_notice['title']); ?>
             </a>
         </div>
-        <a href="notice.php?slug=<?php echo urlencode($ticker_notice['slug']); ?>" class="btn btn-sm btn-navy py-1 px-3 fw-semibold rounded-pill text-nowrap" style="font-size: 0.78rem;">
+        <a href="notice.php?slug=<?php echo urlencode($ticker_notice['slug']); ?>" class="btn btn-sm btn-navy py-1 px-3 fw-semibold rounded-pill text-nowrap d-none d-sm-inline-flex align-items-center" style="font-size: 0.78rem;">
             पढ़ें <i class="fa-solid fa-arrow-right ms-1"></i>
         </a>
     </div>
 <?php endif; ?>
 
 <!-- Active Election Section (Phase 10) -->
-<?php if ($active_election && getSetting('election_section_visibility', '1') === '1'): ?>
+<?php if ($active_election && !empty(getSetting('election_section_visibility', true))): ?>
     <div class="alert alert-dark border-0 rounded-3 mb-4 shadow-sm p-3 font-hindi small text-navy-custom d-flex flex-wrap align-items-center justify-content-between gap-3 border-start border-4 border-warning" style="background: #fcf8e3 !important;">
         <div class="d-flex align-items-center gap-3">
             <span class="badge bg-gold-custom text-navy-custom px-2.5 py-1.5 fw-bold text-uppercase"><i class="fa-solid fa-square-poll-vertical me-1"></i>संघ चुनाव</span>
@@ -151,20 +156,20 @@ if ($db) {
 <?php endif; ?>
 
 <!-- 1. Institutional Hero Section -->
-<div class="p-4 p-lg-5 mb-4 text-white rounded-3 hero-banner shadow-sm">
-    <div class="container-fluid py-2 text-center text-lg-start">
-        <div class="row align-items-center g-4">
+<div class="p-3 p-md-4 p-lg-5 mb-4 text-white rounded-3 hero-banner shadow-sm">
+    <div class="py-1 py-md-2 text-center text-lg-start">
+        <div class="row align-items-center g-3 g-lg-4">
             <div class="col-lg-8">
-                <span class="badge bg-gold-custom text-navy-custom mb-3 px-3 py-2 fw-bold text-uppercase tracking-wider shadow-sm d-inline-flex align-items-center gap-1.5" style="border: 1px solid rgba(255,255,255,0.3); font-size: 0.8rem;">
-                    <i class="fa-solid fa-shield-halved text-navy-custom"></i> आधिकारिक वेब पोर्टल (Official Web Portal)
+                <span class="badge bg-gold-custom text-navy-custom mb-3 px-3 py-2 fw-bold text-uppercase tracking-wider shadow-sm badge-responsive" style="border: 1px solid rgba(255,255,255,0.3); font-size: 0.8rem;">
+                    <i class="fa-solid fa-shield-halved text-navy-custom me-1.5"></i> आधिकारिक वेब पोर्टल (Official Web Portal)
                 </span>
-                <h1 class="display-5 fw-bold text-white mb-3 hindi-text" style="line-height: 1.25;">
+                <h1 class="display-5 fw-bold text-white mb-3 hindi-text hero-heading-responsive">
                     <?php echo e(getSetting('hero_heading', 'जिला अधिवक्ता संघ, बांदा में आपका स्वागत है')); ?>
                 </h1>
-                <p class="col-lg-11 fs-5 text-light-custom font-hindi mb-4" style="line-height: 1.7; font-weight: 300;">
+                <p class="col-lg-11 fs-5 text-light-custom font-hindi mb-4 hero-subtext-responsive">
                     <?php echo e(getSetting('hero_description', '1937 से न्याय, सत्य और अधिवक्ता एकता का प्रतीक। जिला अधिवक्ता संघ, बांदा की आधिकारिक डिजिटल व्यवस्था। सदस्य सेवाएँ, सूचनाएँ, डिजिटल ID Card, Wakalatnama, शुल्क एवं कक्ष प्रबंधन एक ही स्थान पर।')); ?>
                 </p>
-                <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-2.5 gap-md-3 hero-btn-stack">
                     <a href="<?php echo SITE_URL; ?>/members.php" class="btn btn-gold btn-lg px-4 py-2.5 fw-bold shadow-sm d-inline-flex align-items-center gap-2 rounded-3">
                         <i class="fa-solid fa-users-viewfinder"></i> <?php echo e(getSetting('primary_cta', 'सदस्यता खोजें')); ?>
                     </a>
@@ -192,42 +197,42 @@ if ($db) {
 </div>
 
 <!-- 2. Institutional Stats Section -->
-<?php if (getSetting('association_statistics_visibility', '1') === '1'): ?>
-<div class="row g-3 mb-5">
-    <div class="col-md-3 col-sm-6">
-        <div class="card-custom p-4 text-center h-100 card-stat">
+<?php if (!empty(getSetting('association_statistics_visibility', true))): ?>
+<div class="row g-2 g-md-3 mb-5">
+    <div class="col-6 col-md-3">
+        <div class="card-custom p-3 p-md-4 text-center h-100 card-stat">
             <div class="text-navy-custom mb-2">
                 <i class="fa-solid fa-landmark-dome fs-1 text-gold-dark"></i>
             </div>
             <h3 class="fw-bold text-navy-custom mb-1 font-hindi"><?php echo e(getSetting('established_year', '१९३७')); ?></h3>
-            <p class="text-muted small mb-0 fw-semibold">स्थापना वर्ष (Estd. Year)</p>
+            <p class="text-muted small mb-0 fw-semibold">स्थापना वर्ष</p>
         </div>
     </div>
-    <div class="col-md-3 col-sm-6">
-        <div class="card-custom p-4 text-center h-100 card-stat">
+    <div class="col-6 col-md-3">
+        <div class="card-custom p-3 p-md-4 text-center h-100 card-stat">
             <div class="text-navy-custom mb-2">
                 <i class="fa-solid fa-id-card-clip fs-1 text-gold-dark"></i>
             </div>
             <h3 class="fw-bold text-navy-custom mb-1 font-hindi">Digital ID</h3>
-            <p class="text-muted small mb-0 fw-semibold">QR Verification सहित</p>
+            <p class="text-muted small mb-0 fw-semibold">QR Verification</p>
         </div>
     </div>
-    <div class="col-md-3 col-sm-6">
-        <div class="card-custom p-4 text-center h-100 card-stat">
+    <div class="col-6 col-md-3">
+        <div class="card-custom p-3 p-md-4 text-center h-100 card-stat">
             <div class="text-navy-custom mb-2">
                 <i class="fa-solid fa-file-contract fs-1 text-gold-dark"></i>
             </div>
-            <h3 class="fw-bold text-navy-custom mb-1 font-hindi">Wakalatnama</h3>
-            <p class="text-muted small mb-0 fw-semibold">अधिकृत डिजिटल प्रारूप</p>
+            <h3 class="fw-bold text-navy-custom mb-1 font-hindi">वकालतनामा</h3>
+            <p class="text-muted small mb-0 fw-semibold">डिजिटल प्रारूप</p>
         </div>
     </div>
-    <div class="col-md-3 col-sm-6">
-        <div class="card-custom p-4 text-center h-100 card-stat">
+    <div class="col-6 col-md-3">
+        <div class="card-custom p-3 p-md-4 text-center h-100 card-stat">
             <div class="text-navy-custom mb-2">
                 <i class="fa-solid fa-users-gear fs-1 text-gold-dark"></i>
             </div>
-            <h3 class="fw-bold text-navy-custom mb-1 font-hindi">4 Role Portals</h3>
-            <p class="text-muted small mb-0 fw-semibold">Admin • Pres • Secy • Member</p>
+            <h3 class="fw-bold text-navy-custom mb-1 font-hindi">4 Portals</h3>
+            <p class="text-muted small mb-0 fw-semibold">रोल डैशबोर्ड</p>
         </div>
     </div>
 </div>
@@ -442,7 +447,7 @@ if ($db) {
 </div>
 
 <!-- President's Message homepage widget (Phase 11) -->
-<?php if ($president_message_bearer && getSetting('president_message_visibility', '1') === '1'): ?>
+<?php if ($president_message_bearer && !empty(getSetting('president_message_visibility', true))): ?>
     <div class="card border-0 shadow-sm mb-5 font-hindi overflow-hidden" style="border-radius: 14px; border: 1px solid rgba(16, 42, 67, 0.1) !important;">
         <div class="card-header bg-navy-custom text-white py-3 px-4 d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-2">
@@ -495,7 +500,7 @@ if ($db) {
 <?php endif; ?>
 
 <!-- 5. Current Office Bearers Preview Section -->
-<?php if (getSetting('office_bearers_visibility', '1') === '1'): ?>
+<?php if (!empty(getSetting('office_bearers_visibility', true))): ?>
 <div class="mb-5 font-hindi text-navy-custom">
     <div class="text-center mb-4">
         <span class="badge bg-gold-custom text-navy-custom mb-2 px-3 py-1.5 font-hindi fw-bold shadow-sm">

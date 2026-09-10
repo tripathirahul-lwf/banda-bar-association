@@ -172,7 +172,7 @@ $csrf_token = generate_csrf_token();
 
     <!-- Contact Form Container -->
     <div class="col-lg-7 col-12">
-        <div class="bg-white p-4 p-md-5 rounded-3 shadow-sm border border-light">
+        <div class="bg-white p-3 p-md-5 rounded-3 shadow-sm border border-light">
             <h4 class="text-navy-custom font-hindi fw-bold border-bottom border-gold-custom pb-2 mb-3"><i class="bi bi-chat-left-dots-fill text-gold-custom me-2"></i>पूछताछ प्रपत्र (Contact Form)</h4>
             <p class="small text-muted font-hindi mb-4">संघ के कार्यों, सदस्य सत्यापन अथवा तकनीकी सहायता हेतु अपनी शिकायत या सुझाव प्रेषित करें।</p>
             
@@ -227,8 +227,8 @@ $csrf_token = generate_csrf_token();
                     </div>
                 </div>
 
-                <div class="mt-4 text-end">
-                    <button type="submit" class="btn btn-navy px-5 py-2 font-hindi fw-semibold">
+                <div class="mt-4 d-grid d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-navy px-4 px-md-5 py-2.5 font-hindi fw-semibold w-100 w-md-auto">
                         <i class="bi bi-send-fill text-gold-custom me-2"></i> संदेश भेजें (Submit Message)
                     </button>
                 </div>
